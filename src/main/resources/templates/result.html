@@ -4,9 +4,57 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Result</title>
+    <title data-th-text="${city}"></title>
+    <link rel="stylesheet" href="..\static\bootstrap.min.css"> 
 </head>
+
 <body>
-    Weather in <span data-th-text="${city}"></span>
+    <div>
+        <div class="container mt-3 d-flex justify-content-center mt-5 ">
+
+            <div class="row">
+                <div class="col d-flex justify-content-center mt-5">
+                    <h1>Weather in <span data-th-text="${city}"></span></h1>
+                </div>
+            </div>
+            
+            <div class="row" data-th-if="${#lists.isEmpty(weather)}">
+                <div class="col">
+                    <h2>No weather details found</h2>
+                </div>
+            </div>
+    
+            <div class="row " data-th-each="w : ${weather}" data-th-if="${!#lists.isEmpty(weather)}">
+                <div class="col-2">
+                    <img data-th-src="${w.icon}" class="img-thumbnail">
+                </div>
+                <div class="col-8">
+                    <table class="table table-hover">
+                        <tr>
+                            <td>Description</td>
+                            <td>
+                                <strong data-th-text="${w.main}"></strong>,
+                                <span data-th-text="${w.description}"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Temperature</td>
+                            <td>
+                                <span data-th-text="${w.temperature}"></span>C
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+    
+            <div class="row">
+                <div class="col d-flex justify-content-end">
+                    <a href="/" class="btn btn-primary btn-lg">Back</a>
+                </div>
+            </div>
+    
+        </div>
+        
+    </div>
+    
 </body>
 </html>

@@ -79,10 +79,12 @@ public class Weather {
         this.longitude = longitude;
     }
 
-    // public static Weather create(JsonObject o) {
-    //     final Weather w = new Weather();
-    //     w.setMain
-    //     return w;
-    // }
+    public static Weather create(JsonObject o) {
+        final Weather w = new Weather();
+        w.setMain(o.getString("main"));
+        w.setDescription(o.getString("description"));
+        w.setIcon(o.getString("icon"));
+        return w;
+    }
 
 }
